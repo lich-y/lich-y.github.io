@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mysql备份操作 | Edward's DevOps</title><meta name="keywords" content="mysql"><meta name="author" content="Edward Li"><meta name="copyright" content="Edward Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据库备份概述​    在生产环境中，对于任何一个公司来说，数据都是至关重要的，因此数据库的备份和恢复也是尤为重要的。在Mysql中，数据库的增量备份是备份数据库的二进制日志文件，二进制日志文件记录的是对数据库更新操作的SQL语句，不包括查询操作。二进制日志文件的产生需要在配置文件中开启，配置如下： 12[mysqld]log-bin &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data&#x2F;mysql-b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql备份操作">
+<meta property="og:url" content="https://lich-y.gihub.io/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Edward&#39;s DevOps">
+<meta property="og:description" content="数据库备份概述​    在生产环境中，对于任何一个公司来说，数据都是至关重要的，因此数据库的备份和恢复也是尤为重要的。在Mysql中，数据库的增量备份是备份数据库的二进制日志文件，二进制日志文件记录的是对数据库更新操作的SQL语句，不包括查询操作。二进制日志文件的产生需要在配置文件中开启，配置如下： 12[mysqld]log-bin &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data&#x2F;mysql-b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lich-y.gihub.io/img/mysql/mysql.jpg">
+<meta property="article:published_time" content="2020-06-03T03:22:33.000Z">
+<meta property="article:modified_time" content="2021-12-02T05:18:57.536Z">
+<meta property="article:author" content="Edward Li">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lich-y.gihub.io/img/mysql/mysql.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lich-y.gihub.io/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'mysql备份操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-02 13:18:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/mysql/mysql.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Edward's DevOps</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">mysql备份操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-03T03:22:33.000Z" title="发表于 2020-06-03 11:22:33">2020-06-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-02T05:18:57.536Z" title="更新于 2021-12-02 13:18:57">2021-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/mysql/">mysql</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="mysql备份操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数据库备份概述"><a href="#数据库备份概述" class="headerlink" title="数据库备份概述"></a>数据库备份概述</h1><p>​    在生产环境中，对于任何一个公司来说，数据都是至关重要的，因此数据库的备份和恢复也是尤为重要的。在Mysql中，数据库的增量备份是备份数据库的二进制日志文件，二进制日志文件记录的是对数据库更新操作的SQL语句，不包括查询操作。二进制日志文件的产生需要在配置文件中开启，配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin = /usr/local/mysql/data/mysql-bin</span><br></pre></td></tr></table></figure>
+
+<p>​    当对数据库表更新和插入数据时，手动刷新binlog日志时会产生新的二进制日志文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush logs;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库备份方法"><a href="#数据库备份方法" class="headerlink" title="数据库备份方法"></a>数据库备份方法</h1><ol>
+<li><p><strong>物理备份</strong></p>
+<p>物理备份指的是使用相关的复制命令直接把数据库的数据目录中的数据文件给复制一份或形成多副本。这种备份方法的缺点是在复制数据目录的过程中，数据库仍然有数据写入，因此可能会造成一部分数据的丢失。在数据库需要进行停机迁移的时候，可以直接使用物理备份</p>
+</li>
+<li><p><strong>逻辑备份</strong></p>
+<p>逻辑备份时使用Mysql服务自带的mysqldump命令把需要的数据以SQL语句的形式存储。在恢复数据库时，使用MySQL恢复命令可以将sql语句重新在数据库执行一次。</p>
+</li>
+</ol>
+<h1 id="Mysql数据库备份操作"><a href="#Mysql数据库备份操作" class="headerlink" title="Mysql数据库备份操作"></a>Mysql数据库备份操作</h1><h2 id="库备份"><a href="#库备份" class="headerlink" title="库备份"></a>库备份</h2><h3 id="单库备份"><a href="#单库备份" class="headerlink" title="单库备份"></a>单库备份</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --databases test_db &gt; /backup/test_db_bak_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">egrep -v &quot;^--|\*|^$&quot; /backup/test_db_bak_2020-06-02.sql #备份文件内容过滤不必要的输出</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：</strong> 在恢复上述备份文件的时候必须先创建好新库，否则无法恢复数据，因为上述备份中没有建库语句。<strong>解决方法</strong>是执行备份操作时加上“**-B**”参数，备份命令可以修改为如下:</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p -B --databases test_db &gt; /backup/test_db_bak_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="多库备份"><a href="#多库备份" class="headerlink" title="多库备份"></a>多库备份</h3><p>多库备份一般是不建议使用的，当需要恢复时只需要恢复其中一个或某几个库，比较不容易操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p -B --databases test_db test_db1 &gt; /backup/test_db_bak_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p -A -B &gt;/backup/all_bak_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="分库备份"><a href="#分库备份" class="headerlink" title="分库备份"></a>分库备份</h3><p>分库备份就是为了解决多库备份在同一个备份文件造成的问题。分库备份的实质也是针对单库进行备份。</p>
+<p>这种备份方式在生产环境是比较常用的。一般分库备份会使用脚本，然后把脚本加入到定时任务中定期执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">#This scripts is for auto backup mysql databases</span><br><span class="line">#Created by lichy at 2020/6/3</span><br><span class="line">MYSQL_CMD=/usr/bin/mysqldump</span><br><span class="line">MYSQL_USER=root</span><br><span class="line">MYSQL_PWD=**********</span><br><span class="line">DBname=`mysql -u$&#123;MYSQL_USER&#125; -p$&#123;MYSQL_PWD&#125; -e&quot;show databases;&quot;|sed &#x27;1,5d&#x27;`</span><br><span class="line">DATE=`date +%F`</span><br><span class="line">for DBname in $&#123;DBname&#125;</span><br><span class="line">do</span><br><span class="line">    $&#123;MYSQL_CMD&#125; -u$&#123;MYSQL_USER&#125; -p$&#123;MYSQL_PWD&#125; --compact -B $&#123;DBname&#125; | gzip &gt;/backup/$&#123;DBname&#125;_$&#123;DATE&#125;.sql.gz</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos backup]# ls</span><br><span class="line">fenku.sh  test1_2020-06-03.sql.gz  test_db_2020-06-03.sql.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="表备份"><a href="#表备份" class="headerlink" title="表备份"></a>表备份</h2><h3 id="表备份-1"><a href="#表备份-1" class="headerlink" title="表备份"></a>表备份</h3><p>​    在生产环境中，对某个库的单表备份是常见的。这种备份方法易于及时恢复单表数据，而且可以在不影响其他表数据写入的情况下进行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --databases test_db --tables table1 &gt;/backup/test_db_table1_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<h3 id="表结构备份"><a href="#表结构备份" class="headerlink" title="表结构备份"></a>表结构备份</h3><p>​    备份表结构一般用于在不同的库用到相同的表的场景，能够省区建表的一些操作，特别适用于表字段较多时。备份表结构是备份建表的SQL语句，但不包括表里的数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --databases -d test_db --tables table1 &gt;/backup/test_db_table1_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@centos backup]# egrep -v &quot;#|\*|^$&quot; test_db_table1_2020-06-03.sql </span><br><span class="line">-- MySQL dump 10.13  Distrib 8.0.20, for Linux (x86_64)</span><br><span class="line">--</span><br><span class="line">-- Host: localhost    Database: test_db</span><br><span class="line">-- ------------------------------------------------------</span><br><span class="line">-- Server version	8.0.20</span><br><span class="line">--</span><br><span class="line">-- Table structure for table `table1`</span><br><span class="line">--</span><br><span class="line">DROP TABLE IF EXISTS `table1`;</span><br><span class="line">CREATE TABLE `table1` (</span><br><span class="line">  `id` int NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` char(20) NOT NULL,</span><br><span class="line">  `age` char(33) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;</span><br><span class="line">-- Dump completed on 2020-06-03  2:10:29</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="备份优化"><a href="#备份优化" class="headerlink" title="备份优化"></a>备份优化</h2><p>​    查看之前的备份文件结果，能够看得出对于用户来说会有一些信息是没有必要的。为了减少备份时输出的信息，提高备份效率，需要对备份操作进行一些优化。</p>
+<h3 id="1-压缩备份"><a href="#1-压缩备份" class="headerlink" title="1. 压缩备份"></a>1. 压缩备份</h3><p>​    压缩备份是为了减少备份文件的大小，节约磁盘使用空间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p -A -B|gzip &gt;/backup/all_bak_$(date +%F).sql.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-优化输出信息"><a href="#2-优化输出信息" class="headerlink" title="2. 优化输出信息"></a>2. 优化输出信息</h3><p>使用–compact参数可以优化输出信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --compact --databases test_db &gt;/backup/test_db_bak_$(date +%F).sql</span><br></pre></td></tr></table></figure>
+
+<h2 id="不同数据库引擎备份的注意事项"><a href="#不同数据库引擎备份的注意事项" class="headerlink" title="不同数据库引擎备份的注意事项"></a>不同数据库引擎备份的注意事项</h2><h3 id="1-MyISAM引擎"><a href="#1-MyISAM引擎" class="headerlink" title="1. MyISAM引擎"></a>1. MyISAM引擎</h3><p>​    由于MyISAM引擎为表级锁，因此，为了防止数据写入造成数据不一致的情况，需要在备份时使用“–lock-all-tables”参数进行锁表操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --lock-all-tables --compact test_db|gzip &gt;/backup/test_db_bak_$(date +%F).sql.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-InnoDB引擎"><a href="#2-InnoDB引擎" class="headerlink" title="2. InnoDB引擎"></a>2. InnoDB引擎</h3><p>​    由于InnoDB引擎为行锁，因此进行数据库备份时可以不对库执行锁操作，可以使用参数“–single-transaction”来保持数据一致性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p --single-transaction -B -A -F|gzip &gt;/backup/databak.$(date +%F).sql.gz</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/mysql/">mysql</a></div><div class="post_share"><div class="social-share" data-image="/img/mysql/mysql.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/"><img class="prev-cover" src="/img/mysql/mysql.jpg#" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">mysql恢复操作</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/28/mysql%E9%97%AE%E9%A2%98%E7%82%B9%E6%80%BB%E7%BB%93/"><img class="next-cover" src="/img/mysql/mysql.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">mysql问题点总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/05/11/explicit-defaults-for-timestamp%E5%8F%82%E6%95%B0/" title="explicit_defaults_for_timestamp参数"><img class="cover" src="/img/mysql/mysql.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-11</div><div class="title">explicit_defaults_for_timestamp参数</div></div></a></div><div><a href="/2020/05/09/mysql%E5%85%A5%E9%97%A8%E5%B0%8F%E8%AE%B0%E5%BD%95/" title="mysql入门小记录"><img class="cover" src="/img/mysql/mysql.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-09</div><div class="title">mysql入门小记录</div></div></a></div><div><a href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/" title="mysql恢复操作"><img class="cover" src="/img/mysql/mysql.jpg#" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-03</div><div class="title">mysql恢复操作</div></div></a></div><div><a href="/2020/06/03/mysql%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7XtraBackup/" title="mysql物理备份工具XtraBackup"><img class="cover" src="/img/mysql/mysql.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-03</div><div class="title">mysql物理备份工具XtraBackup</div></div></a></div><div><a href="/2020/05/09/mysql%E9%80%9A%E8%BF%87rpm%E5%AE%89%E8%A3%85/" title="mysql通过rpm安装"><img class="cover" src="/img/mysql/mysql.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-09</div><div class="title">mysql通过rpm安装</div></div></a></div><div><a href="/2020/05/28/mysql%E9%97%AE%E9%A2%98%E7%82%B9%E6%80%BB%E7%BB%93/" title="mysql问题点总结"><img class="cover" src="/img/mysql/mysql.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-28</div><div class="title">mysql问题点总结</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Edward Li</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">数据库备份概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">数据库备份方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">Mysql数据库备份操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-number">3.1.</span> <span class="toc-text">库备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-number">3.1.1.</span> <span class="toc-text">单库备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-number">3.1.2.</span> <span class="toc-text">多库备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%A4%87%E4%BB%BD"><span class="toc-number">3.1.3.</span> <span class="toc-text">分库备份</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%A4%87%E4%BB%BD"><span class="toc-number">3.2.</span> <span class="toc-text">表备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%A4%87%E4%BB%BD-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">表备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%BB%93%E6%9E%84%E5%A4%87%E4%BB%BD"><span class="toc-number">3.2.2.</span> <span class="toc-text">表结构备份</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E4%BC%98%E5%8C%96"><span class="toc-number">3.3.</span> <span class="toc-text">备份优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8E%8B%E7%BC%A9%E5%A4%87%E4%BB%BD"><span class="toc-number">3.3.1.</span> <span class="toc-text">1. 压缩备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BC%98%E5%8C%96%E8%BE%93%E5%87%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">3.3.2.</span> <span class="toc-text">2. 优化输出信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E%E5%A4%87%E4%BB%BD%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.4.</span> <span class="toc-text">不同数据库引擎备份的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-MyISAM%E5%BC%95%E6%93%8E"><span class="toc-number">3.4.1.</span> <span class="toc-text">1. MyISAM引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-InnoDB%E5%BC%95%E6%93%8E"><span class="toc-number">3.4.2.</span> <span class="toc-text">2. InnoDB引擎</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/07/02/python%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" title="python常用代码"><img src="/img/python/python.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python常用代码"/></a><div class="content"><a class="title" href="/2020/07/02/python%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" title="python常用代码">python常用代码</a><time datetime="2020-07-02T12:24:33.000Z" title="发表于 2020-07-02 20:24:33">2020-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/08/alternatives%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="alternatives使用详解"><img src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="alternatives使用详解"/></a><div class="content"><a class="title" href="/2020/06/08/alternatives%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="alternatives使用详解">alternatives使用详解</a><time datetime="2020-06-08T02:34:29.000Z" title="发表于 2020-06-08 10:34:29">2020-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7XtraBackup/" title="mysql物理备份工具XtraBackup"><img src="/img/mysql/mysql.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql物理备份工具XtraBackup"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7XtraBackup/" title="mysql物理备份工具XtraBackup">mysql物理备份工具XtraBackup</a><time datetime="2020-06-03T08:57:42.000Z" title="发表于 2020-06-03 16:57:42">2020-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/" title="mysql恢复操作"><img src="/img/mysql/mysql.jpg#" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql恢复操作"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/" title="mysql恢复操作">mysql恢复操作</a><time datetime="2020-06-03T07:24:42.000Z" title="发表于 2020-06-03 15:24:42">2020-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/" title="mysql备份操作"><img src="/img/mysql/mysql.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql备份操作"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/" title="mysql备份操作">mysql备份操作</a><time datetime="2020-06-03T03:22:33.000Z" title="发表于 2020-06-03 11:22:33">2020-06-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Edward Li</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

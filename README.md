@@ -1,1 +1,0 @@
-# lich-y.github.io

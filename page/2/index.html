@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Edward's DevOps - Technology stack</title><meta name="keywords" content="K8S,DevOps"><meta name="author" content="Edward Li"><meta name="copyright" content="Edward Li"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Edward&#39;s DevOps">
+<meta property="og:url" content="https://lich-y.gihub.io/page/2/index.html">
+<meta property="og:site_name" content="Edward&#39;s DevOps">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lich-y.gihub.io/img/avatar.png">
+<meta property="article:author" content="Edward Li">
+<meta property="article:tag" content="K8S,DevOps">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lich-y.gihub.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lich-y.gihub.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Edward\'s DevOps',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-12-02 18:33:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Edward's DevOps</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Edward's DevOps</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/28/sc%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86/" title="sc命令管理">     <img class="post_bg" src="/img/cmd/sc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sc命令管理"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/28/sc%E5%91%BD%E4%BB%A4%E7%AE%A1%E7%90%86/" title="sc命令管理">sc命令管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-28T02:18:07.000Z" title="发表于 2020-04-28 10:18:07">2020-04-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/windows/">windows</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/windows/cmd/">cmd</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/cmd/">cmd</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/windows/">windows</a></span></div><div class="content">1. 命令介绍
+SC是用来与服务控制管理器和服务进行通信的命令行程序。它就可以帮助我们把一个普通程序创建成服务。使用sc可以测试和调试服务程序，可以设置存储在注册表中的服务属性，可以控制服务的启动方式，也可以启动和停止服务。SC命令可以做windows的“管理工具”中的“服务”里的所有工作，还可以做很多“服务”里面做不到的工作，是一个非常强大的命令。
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586 用法：               sc &lt;server&gt; [command] [service name] &lt;option1&gt; &lt;option2&gt;...        &lt;server&gt; 选项的格式为 &quot;\\ServerName&quot;        可 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/24/%E5%88%9D%E5%A7%8BCelery/" title="初始Celery">     <img class="post_bg" src="/img/python/celery.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="初始Celery"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/24/%E5%88%9D%E5%A7%8BCelery/" title="初始Celery">初始Celery</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-24T04:29:38.000Z" title="发表于 2020-04-24 12:29:38">2020-04-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/celery/">celery</a></span></div><div class="content">故事的起源因公司项目需要，开始了解一下Celery及Rabbitmq，今天先了解学习一下Celery，Rabbitmq回头会再写一篇博客继续介绍的，OK，回归正题~~~
+1 . What is CeleryCelery是一个简单、灵活且可靠的，用于处理大量消息的分布式系统，并且提供了一整套用于操作此系统的工具。Celery是一款消息队列工具，用于处理实时数据以及任务调度。
+参考文档：
+Celery中文手册
+
+
+Celery官方文档
+
+2. Celery的组成Celery的架构是由消息中间件（broker），任务执行单元（worker）和任务执行结果存储（backend)组成的。
+Celery支持多种消息传输的方式，使用到的中间件有RabbitMQ、Redis、Amazon SQS。
+Celery需要一个中间件来进行消息的接受和发送，一般这个中间件会以独立的服务形式出现，作为消息中间件。
+Rabbit MQ的功能齐全，比较稳定且易于安装，所以在生产环境中是首选。Redis功能也比较全，但是如果突然停止运行的话，会造成数据丢失。此次我只是学习阶段做测试，就用Redis了。
+3.环境的准备R ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/24/robocopy%E5%B7%AE%E5%BC%82%E5%A4%87%E4%BB%BD/" title="robocopy差异备份">     <img class="post_bg" src="/img/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="robocopy差异备份"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/24/robocopy%E5%B7%AE%E5%BC%82%E5%A4%87%E4%BB%BD/" title="robocopy差异备份">robocopy差异备份</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-24T04:14:59.000Z" title="发表于 2020-04-24 12:14:59">2020-04-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/windows/">windows</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/windows/">windows</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/backup/">backup</a></span></div><div class="content">介绍Robocopy.exe是微软在Windows server2003 Resource kit Tools里面提供的程序用来做备份的。Microsoft Windows中内置的传统的“复制和粘贴”功能有一些局限性。它在执行简单的任务（将一个文档从一个目录移动到另一个目录等）时处理得还好，但缺乏 IT 专业人员在工作场所所需的高级功能。例如，复制和粘贴操作不包括任何高级复原功能，所以支持断点续传。通过Robocopy可以创建两个文件结构完成相同的镜像副本，而且还可以保留所有相关文件信息，包括日期和时间戳、安全访问控制列表（ACL）等更多内容。
+命令及参数详解
+
+
+用法
+ROBOCOPY source destination [file [file]…] [options]
+
+
+
+源
+源目录(驱动器:\路径或\服务器\共享\路径）。
+
+
+目标
+目标目录(驱动器:\路径或\服务器\共享\路径）。
+
+
+文件
+要复制的文件(名称/通配符: 默认为 “.“）。
+
+
+注意，robocopy复制特定文件时文件名列在后面，这是它与copy的一个区别例如:copy E:\1.txt E:\A （复制E ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/24/Python%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Python装饰器详解">     <img class="post_bg" src="/img/python/python.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python装饰器详解"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/24/Python%E8%A3%85%E9%A5%B0%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Python装饰器详解">Python装饰器详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-24T04:10:09.000Z" title="发表于 2020-04-24 12:10:09">2020-04-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a></span></div><div class="content">装饰器模式装饰器(Decorators)就是允许给一个现有对象添加新功能，但是又不改变它的结构的一种封装模式。这种类型的设计属于结构型模式，是作为现有类的一个包装。
+介绍装饰器的本质是一个python函数，可以让其他函数方法在不需要做代码变动的前提下增加额外的功能，返回值也是一个函数对象。
+实例1. 简单装饰器123456789101112131415161718import timedef deco(func):    def wrapper():        startTime = time.time()        func()        endTime = time.time()        sumtime = (endTime - startTime)*1000        print(&quot;spend time %d ms&quot; %sumtime)    return wrapper@decodef func():    print(&quot;start&quot;)    time.sleep(1)    print(&quot;end&quot ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/23/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" title="Python面向对象编程">     <img class="post_bg" src="/img/python/python.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python面向对象编程"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/23/Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" title="Python面向对象编程">Python面向对象编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-23T04:40:17.000Z" title="发表于 2020-04-23 12:40:17">2020-04-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a></span></div><div class="content">@property装饰器通过以单下划线开头可以用来暗示属性是受保护的，不建议外界直接访问，那么如果想访问属性可以通过属性的getter（访问器）和setter（修改器）方法进行对应的操作。如果要做到这点，就可以考虑使用@property包装器来包装getter和setter方法，使得对属性的访问既安全又方便，代码如下所示。
+123456789101112131415161718def __init__(self, name, age):    self._name = name    self._age = age# 访问器 - getter方法@propertydef name(self):    return self._name# 访问器 - getter方法@propertydef age(self):    return self._age# 修改器 - setter方法@age.setterdef age(self, age):    self._age = age
+
+
+__slots__限定对象绑定属性：1234567891011121314151617181920cla ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/22/Python%E6%93%8D%E4%BD%9Credis/" title="Python操作redis">     <img class="post_bg" src="/img/cover/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python操作redis"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/22/Python%E6%93%8D%E4%BD%9Credis/" title="Python操作redis">Python操作redis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-22T13:52:11.000Z" title="发表于 2020-04-22 21:52:11">2020-04-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/python/redis/">redis</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/redis/">redis</a></span></div><div class="content">
+安装python-redis：
+1pip install redis
+新建一个文件比如redis_test.py，然后初始化一个redis实例变量，并且在ubuntu虚拟机中开启redis。比如虚拟机的ip地址为192.168.174.130。示例代码如下：
+1234# 从redis包中导入Redis类from redis import Redis# 初始化redis实例变量xtredis = Redis(host=&#x27;192.168.174.130&#x27;,port=6379)&lt;/code&gt;&lt;/pre&gt;
+对字符串的操作：操作redis的方法名称，跟之前使用redis-cli一样，现就一些常用的来做个简单介绍，示例代码如下(承接以上的代码)：
+1234567891011# 添加一个值进去，并且设置过期时间为60秒，如果不设置，则永远不会过期 xtredis.set(&#x27;username&#x27;,&#x27;xiaotuo&#x27;,ex=60) # 获取一个值 xtredis.get(&#x27;username&#x27;) # 删 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/22/procsyskernelhung-task-timeout-secs%E6%95%85%E9%9A%9C%E6%8A%A5%E9%94%99/" title="procsyskernelhung_task_timeout_secs故障报错">     <img class="post_bg" src="/img/cover/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="procsyskernelhung_task_timeout_secs故障报错"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/22/procsyskernelhung-task-timeout-secs%E6%95%85%E9%9A%9C%E6%8A%A5%E9%94%99/" title="procsyskernelhung_task_timeout_secs故障报错">procsyskernelhung_task_timeout_secs故障报错</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-22T13:11:50.000Z" title="发表于 2020-04-22 21:11:50">2020-04-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/linux/">linux</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">报错如下问题原因：默认情况下， Linux会最多使用40%的可用内存作为文件系统缓存。当超过这个阈值后，文件系统会把将缓存中的内存全部写入磁盘， 导致后续的IO请求都是同步的。
+将缓存写入磁盘时，有一个默认120秒的超时时间。 出现上面的问题的原因是IO子系统的处理速度不够快，不能在120秒将缓存中的数据全部写入磁盘。
+IO系统响应缓慢，导致越来越多的请求堆积，最终系统内存全部被占用，导致系统失去响应。
+解决方案：根据应用程序情况，对vm.dirty_ratio，vm.dirty_background_ratio两个参数进行调优设置。
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/22/Django%E4%B8%8EPython%E7%89%88%E6%9C%AC%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/" title="Django与Python版本对应关系">     <img class="post_bg" src="/img/python/python-django.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django与Python版本对应关系"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/22/Django%E4%B8%8EPython%E7%89%88%E6%9C%AC%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/" title="Django与Python版本对应关系">Django与Python版本对应关系</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-22T08:59:31.000Z" title="发表于 2020-04-22 16:59:31">2020-04-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/python/django/">django</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/python/">python</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/django/">django</a></span></div><div class="content">Django 1.11需要Python 2.7或Python 3.4以上的版本；Django 2.0需要Python 3.4以上的版本；Django 2.1需要Python 3.5以上的版本。
+
+
+
+Django版本
+Python版本
+
+
+
+1.8
+2.7、3.2、3.3、3.4、3.5
+
+
+1.9、1.10
+2.7、3.4、3.5
+
+
+1.11
+2.7、3.4、3.5、3.6、3.7
+
+
+2.0
+3.4、3.5、3.6、3.7
+
+
+2.1、2.2
+3.5、3.6、3.7
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/22/CMD%E5%9F%9F%E8%B4%A6%E5%8F%B7%E6%93%8D%E4%BD%9C/" title="CMD域账号操作">     <img class="post_bg" src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMD域账号操作"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/22/CMD%E5%9F%9F%E8%B4%A6%E5%8F%B7%E6%93%8D%E4%BD%9C/" title="CMD域账号操作">CMD域账号操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-22T03:09:32.000Z" title="发表于 2020-04-22 11:09:32">2020-04-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/windows%E8%BF%90%E7%BB%B4/">windows运维</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/windows%E8%BF%90%E7%BB%B4/cmd/">cmd</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/cmd/">cmd</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/windows%E8%BF%90%E7%BB%B4/">windows运维</a></span></div><div class="content">需求偶尔会有不方便登陆域控的情况，那么除了使用授权管理活动目录、mmc添加控制台外，还有在本地域环境下通过DOS命令管理。
+实例命令
+查看域用户状态：net user /domain username
+新增域用户：net user /domain /add username1 username2
+删除域用户：net user /domain /del username1
+修改域用户密码：net user /domain username password
+启用域用户：net user /domain username active:yes
+禁用域用户：net user /domain username active:no
+查看域中所有用户：net user /domain
+查询域名称：net view /domain
+查询域控制器：net time /domain
+查询所有域控制器：dsquery server
+
+详解：
+username：用户账号名
+password：用户账户的密码
+/domain：计算机所在域
+/add：将用户账号添加到用户账号的数据库
+/delete：从用户账号数 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Edward Li</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/07/02/python%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" title="python常用代码"><img src="/img/python/python.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python常用代码"/></a><div class="content"><a class="title" href="/2020/07/02/python%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/" title="python常用代码">python常用代码</a><time datetime="2020-07-02T12:24:33.000Z" title="发表于 2020-07-02 20:24:33">2020-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/08/alternatives%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="alternatives使用详解"><img src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="alternatives使用详解"/></a><div class="content"><a class="title" href="/2020/06/08/alternatives%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="alternatives使用详解">alternatives使用详解</a><time datetime="2020-06-08T02:34:29.000Z" title="发表于 2020-06-08 10:34:29">2020-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7XtraBackup/" title="mysql物理备份工具XtraBackup"><img src="/img/mysql/mysql.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql物理备份工具XtraBackup"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E7%89%A9%E7%90%86%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7XtraBackup/" title="mysql物理备份工具XtraBackup">mysql物理备份工具XtraBackup</a><time datetime="2020-06-03T08:57:42.000Z" title="发表于 2020-06-03 16:57:42">2020-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/" title="mysql恢复操作"><img src="/img/mysql/mysql.jpg#" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql恢复操作"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E6%81%A2%E5%A4%8D%E6%93%8D%E4%BD%9C/" title="mysql恢复操作">mysql恢复操作</a><time datetime="2020-06-03T07:24:42.000Z" title="发表于 2020-06-03 15:24:42">2020-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/" title="mysql备份操作"><img src="/img/mysql/mysql.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql备份操作"/></a><div class="content"><a class="title" href="/2020/06/03/mysql%E5%A4%87%E4%BB%BD%E6%93%8D%E4%BD%9C/" title="mysql备份操作">mysql备份操作</a><time datetime="2020-06-03T03:22:33.000Z" title="发表于 2020-06-03 11:22:33">2020-06-03</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/"><span class="card-category-list-name">linux</span><span class="card-category-list-count">4</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/python/"><span class="card-category-list-name">python</span><span class="card-category-list-count">6</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/python/django/"><span class="card-category-list-name">django</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/python/redis/"><span class="card-category-list-name">redis</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/windows/"><span class="card-category-list-name">windows</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/windows/cmd/"><span class="card-category-list-name">cmd</span><span class="card-category-list-count">1</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/backup/" style="font-size: 1.1em; color: #999">backup</a> <a href="/tags/celery/" style="font-size: 1.1em; color: #999">celery</a> <a href="/tags/cmd/" style="font-size: 1.2em; color: #999da3">cmd</a> <a href="/tags/django/" style="font-size: 1.1em; color: #999">django</a> <a href="/tags/linux/" style="font-size: 1.3em; color: #99a1ac">linux</a> <a href="/tags/mysql/" style="font-size: 1.5em; color: #99a9bf">mysql</a> <a href="/tags/python/" style="font-size: 1.4em; color: #99a5b6">python</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/windows/" style="font-size: 1.2em; color: #999da3">windows</a> <a href="/tags/windows%E8%BF%90%E7%BB%B4/" style="font-size: 1.1em; color: #999">windows运维</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">9</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2019-08-05T05:14:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">13.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-12-02T10:33:53.150Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Edward Li</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
